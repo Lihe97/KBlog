@@ -2,8 +2,10 @@ package controllers
 
 import (
 	"KBlog/models"
+	"KBlog/utils"
 	"fmt"
 	"github.com/astaxie/beego"
+	"time"
 )
 
 type RegisterController struct{
@@ -28,7 +30,18 @@ func(this *RegisterController) Post(){
 	}
 
 	//
-	//password = utils.
+	password = utils.MD5(password)
+	fmt.Println("MD5后",password)
+
+	user := models.User{0,username,password,0,time.Now().Unix()}
+	_ , err := models.InsertUser(user)
+	if err!= nil{
+		this.Data["json"] = map[string]interface{}{"code":0,"message":"注册失败"}
+
+	}else{
+		this.Data["json"] = map[string]interface{}{"code":1,"message":"注册成功"}
+	}
+	this.ServeJSON()
 
 }
 

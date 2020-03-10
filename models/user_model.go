@@ -28,7 +28,7 @@ func QueryUserWightCon(con string)int{
 }
 //根据用户名查询id
 func QueryUserWithUsername(username string)int{
-	sql := fmt.Sprintf("where username='%s",username)
+	sql := fmt.Sprintf("where username='%s'",username)
 	return QueryUserWightCon(sql)
 }
 
