@@ -24,6 +24,8 @@ func (this *LoginController) Post() {
 	id := models.QueryUserWithParam(username, utils.MD5(password))
 	fmt.Println("id:", id)
 	if id > 0 {
+
+		this.SetSession("loginuser",username)
 		this.Data["json"] = map[string]interface{}{"code": 1, "message": "登录成功"}
 	} else {
 		this.Data["json"] = map[string]interface{}{"code": 0, "message": "登录失败"}
