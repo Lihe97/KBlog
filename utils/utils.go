@@ -31,6 +31,7 @@ func InitMysql(){
 		fmt.Println("链接成功？")
 		db = db1
 		CreateTableWithUser()
+		CreateTableWithArticle()
 	}
 }
 func ModifyDB(sql string, args ...interface{}) (int64,error){
@@ -55,6 +56,18 @@ func CreateTableWithUser(){
 		password VARCHAR(64),
 		status INT(4),
 		createtime INT(10)
+		);`
+	ModifyDB(sql)
+}
+func CreateTableWithArticle() {
+	sql := `create table if not exists article(
+		id int(4) primary key auto_increment not null,
+		title varchar(30),
+		author varchar(20),
+		tags varchar(30),
+		short varchar(255),
+		content longtext,
+		createtime int(10)
 		);`
 	ModifyDB(sql)
 }
