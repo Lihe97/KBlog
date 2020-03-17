@@ -114,3 +114,21 @@ func QueryArticleWithId(id int) Article {
 	art := Article{id, title, tags, short, content, author, createtime}
 	return art
 }
+func UpdateArticle(article Article) (int64, error) {
+	//数据库操作
+	// update article set title = ?, tags = ?, short = ?, content = ?  where id = ?
+	return utils.ModifyDB("update article set title=?,tags=?,short=?,content=? where id=?",
+		article.Title, article.Tags, article.Short, article.Content, article.Id)
+}
+func DeleteArticle(artID int) (int64, error) {
+	//1、删除文章
+	i, err := deleteArticleWithArtId(artID)
+	//2、计算文章总页码数
+	SetArticleRowsNum()
+	return i, err
+}
+
+// delete from article where id = artID
+func deleteArticleWithArtId(artID int) (int64, error) {
+	return utils.ModifyDB("delete from article where id=?", artID)
+}

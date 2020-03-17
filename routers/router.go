@@ -21,7 +21,12 @@ func init() {
 	//写文章
 	beego.Router("/article/add",&controllers.AddArticleController{})
 
+	//显示文章详情
 	beego.Router("/article/:id",&controllers.ShowArticleController{})
 
+	//更新文章
+	beego.Router("/article/update",&controllers.UpdateArticleController{})
 
+	//删除文章
+	beego.Router("/article/delete",&controllers.DeleteArticleController{})
 }
