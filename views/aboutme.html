@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}}</title>
+    <link href="../static/css/blogsheet.css" rel="stylesheet">
+    <link href="../static/css/lib/highlight.css" rel="stylesheet">
+</head>
+<body>
+
+{{template "block/nav.html" .}}
+
+{{/*<div id = "info";margin-top:20px>*/}}
+{{/*    <h1>{{.author}}</h1>*/}}
+{{/*    <h2>{{.tel}}</h2>*/}}
+{{/*    <h2>{{.qq}}</h2>*/}}
+{{/*    <h2>{{.github}}</h2>*/}}
+{{/*    <h2>{{.CSDN}}</h2>*/}}
+{{/*</div>*/}}
+<div id="aboutme">
+    <div>
+        <div id="myt">
+            <p class="myp">
+                <a>{{.author}}</a>
+            </p>
+            <p class="myp">
+                <a>{{.qq}}</a>
+            </p>
+            <p class="myp">
+                <a>{{.tel}}</a>
+            </p>
+            <p class="myp">
+                <a href="http://github.com/lihe97"> {{.github}}</a>
+            </p>
+            <p class="myp">
+                <a href="http://blog.csdn.net/kansas_lh"> {{.CSDN}}</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

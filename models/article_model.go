@@ -4,6 +4,7 @@ import (
 	"KBlog/utils"
 	"fmt"
 	"github.com/astaxie/beego"
+	"log"
 	"strconv"
 )
 var articleRowsNum = 0
@@ -34,27 +35,7 @@ func FindArticleWithPage(page int) ([]Article, error) {
 	return QueryArticleWithPage(page, num)
 }
 
-func  QueryArticlesWithTag(tag string) ([]Article, error) {
-	sql := " where tags like '%&" + tag + "&%'"
-	sql += " or tags like '%&" + tag + "'"
-	sql += " or tags like '" + tag + "&%'"
-	sql += " or tags like '" + tag + "'"
-	fmt.Println(sql)
-	//sql: like
 
-	// tags: http&web&socket&互联网&计算机
-	//       http&web
-	//       web&socket&互联网&计算机
-	//       web
-
-	// http://localhost:8080?tag=web
-
-	// %&web&%   %代表任何内容都可以匹配
-	// %&web
-	// web&%
-	// web
-	return QueryArticlesWithCon(sql)
-}
 func GetArticleRowsNum() int {
 	if articleRowsNum == 0 {
 		articleRowsNum = QueryArticleRowNum()
@@ -131,4 +112,28 @@ func DeleteArticle(artID int) (int64, error) {
 // delete from article where id = artID
 func deleteArticleWithArtId(artID int) (int64, error) {
 	return utils.ModifyDB("delete from article where id=?", artID)
+}
+func QueryArticlesWithTag(tag string) ([]Article, error) {
+	sql := " where tags like '%&" + tag + "&%'"
+	sql += " or tags like '%&" + tag + "'"
+	sql += " or tags like '" + tag + "&%'"
+	sql += " or tags like '" + tag + "'"
+	fmt.Println(sql)
+
+	return QueryArticlesWithCon(sql)
+}
+
+func QueryArticleWithParam(param string) []string {
+	// select tags from article
+	rows, err := utils.QueryDB(fmt.Sprintf("select %s from article", param))
+	if err != nil {
+		log.Println(err)
+	}
+	var paramList []string
+	for rows.Next() {
+		arg := ""
+		rows.Scan(&arg)
+		paramList = append(paramList, arg)
+	}
+	return paramList
 }

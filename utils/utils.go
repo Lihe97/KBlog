@@ -38,6 +38,7 @@ func InitMysql(){
 		db = db1
 		CreateTableWithUser()
 		CreateTableWithArticle()
+		CreateTableWithAlbum()
 	}
 }
 func ModifyDB(sql string, args ...interface{}) (int64,error){
@@ -114,4 +115,14 @@ func SwitchMarkdownToHtml(content string) template.HTML {
 	})
 	htmlString, _ := doc.Html()
 	return template.HTML(htmlString)
+}
+func CreateTableWithAlbum() {
+	sql := `create table if not exists album(
+		id int(4) primary key auto_increment not null,
+		filepath varchar(255),
+		filename varchar(64),
+		status int(4),
+		createtime int(10)
+		);`
+	ModifyDB(sql)
 }

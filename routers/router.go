@@ -29,4 +29,18 @@ func init() {
 
 	//删除文章
 	beego.Router("/article/delete",&controllers.DeleteArticleController{})
+
+	//删除文章
+	beego.Router("/tags",&controllers.TagsController{})
+
+	beego.Router("/album", &controllers.AlbumController{})
+
+	//文件上传
+	beego.Router("/upload", &controllers.UploadController{})
+
+	//关于我页面
+	beego.Router("/aboutme",&controllers.AboutMeController{})
+
+
+
 }

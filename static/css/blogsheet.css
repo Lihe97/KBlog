@@ -142,11 +142,11 @@ body{
 #myt{
     display: inline-block;
     position: absolute;
-    left: 800px;
-    top: 360px;
+    left: 50px;
+    top: 100px;
 }
 .myp{
     color: #333333;
-    font-size: 30px;
+    font-size: 25px;
 
 }
