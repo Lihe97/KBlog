@@ -39,7 +39,7 @@ $(document).ready(function () {
                 type: "post",
                 dataType: "json",
                 success: function (data, status) {
-                    alert("data:" + data.message)
+                    //alert("data:" + data.message)
                     if (data.code == 1) {
                         setTimeout(function () {
                             window.location.href = "/login"
@@ -47,7 +47,7 @@ $(document).ready(function () {
                     }
                 },
                 err: function (data, status) {
-                    alert("err:" + data.message + ":" + status)
+                    //alert("err:" + data.message + ":" + status)
                 }
             })
         }
@@ -78,13 +78,13 @@ $(document).ready(function () {
         },
         submitHandler: function (form) {
             var urlStr = "/login"
-            alert("urlStr:" + urlStr)
+            //("urlStr:" + urlStr)
             $(form).ajaxSubmit({
                 url: urlStr,
                 type: "post",
                 dataType: "json",
                 success: function (data, status) {
-                    alert("data:" + data.message + ":" + status)
+                    //alert("data:" + data.message + ":" + status)
                     if (data.code == 1) {
                         setTimeout(function () {
                             window.location.href = "/"
@@ -131,11 +131,11 @@ $(document).ready(function () {
             //判断文章id确定提交的表单的服务器地址
             //若id大于零，说明是修改文章
             var artId = $("#write-article-id").val();
-            alert("artId:" + artId);
+            //alert("artId:" + artId);
             if (artId > 0) {
                 urlStr = "/article/update"
             }
-            alert("urlStr:" + urlStr);
+            //alert("urlStr:" + urlStr);
             $(form).ajaxSubmit({
                 url: urlStr,
                 type: "post",
