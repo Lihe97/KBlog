@@ -33,8 +33,8 @@ func canalRun() {
 		os.Exit(1)
 
 	}
-	fmt.Println(connector)
-	fmt.Println(err)
+	//fmt.Println(connector)
+	//fmt.Println(err)
 	err = connector.Subscribe(".*\\..*")
 	if err != nil {
 		log.Println(err)
@@ -47,6 +47,8 @@ func canalRun() {
 			log.Println(err)
 			os.Exit(1)
 		}
+
+
 		batchId := message.Id
 		if batchId == -1 || len(message.Entries) <= 0 {
 			time.Sleep(2000 * time.Millisecond)
