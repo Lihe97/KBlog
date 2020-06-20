@@ -56,7 +56,7 @@ func MakeHomeBlocks(articles []Article, isLogin bool) template.HTML {
 		homeParam.Id = art.Id
 		homeParam.Title = art.Title
 		homeParam.Tags = createTagsLinks(art.Tags)
-		fmt.Println("tag-->", art.Tags)
+		//fmt.Println("tag-->", art.Tags)
 		homeParam.Short = art.Short
 		homeParam.Content = art.Content
 		homeParam.Author = art.Author

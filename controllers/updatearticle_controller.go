@@ -9,7 +9,7 @@ type UpdateArticleController struct {
 	BaseController
 }
 func (this *UpdateArticleController) Get() {
-	fmt.Println("postid:==========================")
+	//fmt.Println("postid:==========================")
 	id, _ := this.GetInt("id")
 	fmt.Println(id)
 

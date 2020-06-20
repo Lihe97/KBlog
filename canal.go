@@ -1,29 +1,17 @@
 package main
 
 import (
-	_ "KBlog/routers"
-
 	"fmt"
 	"log"
 	"os"
 	"time"
 
-	"github.com/golang/protobuf/proto"
 	"github.com/withlin/canal-go/client"
 	protocol "github.com/withlin/canal-go/protocol"
+	"github.com/golang/protobuf/proto"
 )
 
-//func main() {
-//	utils.InitMysql()
-//	//2种方法配置session
-//	//beego.SessionConfig{}.SessionOn =
-//
-//	beego.Run()
-//}
-
 func canalRun() {
-
-
 
 
 	connector := client.NewSimpleCanalConnector("192.168.0.112", 11111, "root", "lihe80981308", "example", 60000, 60*60*1000)
@@ -31,15 +19,15 @@ func canalRun() {
 	if err != nil {
 		log.Println(err)
 		os.Exit(1)
-
 	}
-	//fmt.Println(connector)
-	//fmt.Println(err)
+
+
 	err = connector.Subscribe(".*\\..*")
 	if err != nil {
 		log.Println(err)
 		os.Exit(1)
 	}
+
 	for {
 
 		message, err := connector.Get(100, nil, nil)
@@ -47,22 +35,16 @@ func canalRun() {
 			log.Println(err)
 			os.Exit(1)
 		}
-
-
 		batchId := message.Id
 		if batchId == -1 || len(message.Entries) <= 0 {
-			time.Sleep(2000 * time.Millisecond)
-
-			fmt.Print(time.Now())
-			fmt.Println("     listening")
-			//fmt.Println("===没有数据了===")
+			time.Sleep(3300 * time.Millisecond)
+			fmt.Println("===listening...===")
 			continue
 		}
 
 		printEntry(message.Entries)
 
 	}
-
 }
 
 func printEntry(entrys []protocol.Entry) {

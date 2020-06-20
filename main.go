@@ -10,7 +10,7 @@ import (
 func main() {
 
 	utils.InitMysql()
-	go canalRun()
+	//go canalRun()
 
 	beego.Run()
 
